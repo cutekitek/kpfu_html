@@ -3,12 +3,12 @@ import TasksListComponent from '../view/tasks-list-component.js';
 import TaskComponent from '../view/task-component.js';
 import TrashButtonComponent from '../view/trash-button-component.js';
 import {render} from '../framework/render.js';
-import { generateTask } from '../mock/task.js';
+import { tasks } from '../mock/task.js';
 
 export default class TaskListPresenter {
   #container = null;
   #taskListBoardComponent = new TasksListBoardComponent();
-  #tasks = Array.from({length: 12}, generateTask);
+  #tasks = tasks;
 
   constructor({container}) {
     this.#container = container;
@@ -29,10 +29,6 @@ export default class TaskListPresenter {
       if(type === 'trash'){
         const trashButtonComponent = new TrashButtonComponent()
         render(trashButtonComponent, taskList.getElement())
-
-        trashButtonComponent.setClickHandler(() => {
-          alert('Удалить все задачи из корзины?')
-        })
       }
     });
   }
